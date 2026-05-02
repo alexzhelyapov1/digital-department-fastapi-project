@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if word %}Редактировать{% else %}Добавить{% endif %} слово - {{ super() }}
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                <h3 class="mb-0">{% if word %}✏️ Редактирование{% else %}➕ Добавление нового слова{% endif %}</h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div class="mb-3">
+                        <label for="id_bulgarian_word" class="form-label">Болгарское слово</label>
+                        <input type="text" name="bulgarian_word" class="form-control" id="id_bulgarian_word" value="{{ word.bulgarian_word if word else '' }}" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_russian_translation" class="form-label">Русский перевод</label>
+                        <input type="text" name="russian_translation" class="form-control" id="id_russian_translation" value="{{ word.russian_translation if word else '' }}" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_example_sentence" class="form-label">Пример использования</label>
+                        <textarea name="example_sentence" class="form-control" id="id_example_sentence" rows="3">{{ word.example_sentence if word else '' }}</textarea>
+                    </div>
+
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="is_learned" class="form-check-input" id="id_is_learned" {% if word and word.is_learned %}checked{% endif %}>
+                        <label class="form-check-label" for="id_is_learned">Изучено</label>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success">Сохранить</button>
+                        <a href="{{ url_for('word_list') }}" class="btn btn-outline-secondary">Отмена</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

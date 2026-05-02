@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Тренажер - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <h2 class="mb-4">🏋️‍♂️ Тренажер</h2>
+
+        {% if word %}
+            <div class="card shadow border-info mb-4">
+                <div class="card-header bg-info text-white fw-bold py-3">
+                    <h4 class="mb-0">Как переводится слово:</h4>
+                </div>
+                <div class="card-body py-5">
+                    <h1 class="display-3 fw-bold text-primary">{{ word.bulgarian_word }}</h1>
+                    {% if word.example_sentence %}
+                        <p class="text-muted mt-3 italic">
+                            <em>Пример: {{ word.example_sentence }}</em>
+                        </p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <form method="post" class="mt-4">
+                <input type="hidden" name="word_id" value="{{ word.id }}">
+                <div class="mb-3">
+                    <input type="text" name="translation" class="form-control form-control-lg text-center" 
+                           placeholder="Введите перевод на русский" required autofocus>
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg">Проверить</button>
+                    <a href="{{ url_for('quiz') }}" class="btn btn-outline-secondary">Пропустить слово</a>
+                </div>
+            </form>
+        {% else %}
+            <div class="alert alert-warning">
+                <p class="lead">В вашем словаре еще нет слов для тренировки.</p>
+                <a href="{{ url_for('word_add') }}" class="btn btn-primary">Добавить слова в словарь</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

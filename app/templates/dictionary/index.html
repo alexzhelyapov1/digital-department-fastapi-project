@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4">Добре дошли! 🇧🇬</h1>
+        <p class="lead mt-4">
+            "BG-RU: Мой болгарский словарь" — это ваш персональный помощник в изучении болгарского языка. 
+            Ведите свой список слов, добавляйте примеры и тренируйтесь каждый день.
+        </p>
+        <hr class="my-4">
+        {% if not user %}
+            <div class="mt-4">
+                <a href="{{ url_for('signup') }}" class="btn btn-primary btn-lg me-3">Зарегистрироваться</a>
+                <a href="{{ url_for('login') }}" class="btn btn-outline-secondary btn-lg">Войти</a>
+            </div>
+        {% else %}
+            <div class="mt-4">
+                <a href="{{ url_for('word_list') }}" class="btn btn-success btn-lg">Перейти к словарю</a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Импорт слов - {{ super() }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow">
+            <div class="card-header bg-dark text-white">
+                <h4 class="mb-0">📥 Импорт слов из CSV</h4>
+            </div>
+            <div class="card-body">
+                <p class="text-muted small">
+                    Выберите CSV файл с колонками: <strong>bulgarian_word</strong>, 
+                    <strong>russian_translation</strong>, <strong>example_sentence</strong>.
+                </p>
+                
+                <form method="post" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="fileInput" class="form-label">Выберите файл на устройстве</label>
+                        <input class="form-control" type="file" id="fileInput" name="file" accept=".csv" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg">Начать импорт</button>
+                        <a href="{{ url_for('word_list') }}" class="btn btn-outline-secondary">Вернуться к словарю</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
