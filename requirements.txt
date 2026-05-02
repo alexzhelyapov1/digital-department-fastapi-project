@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+sqlalchemy
+alembic
+jinja2
+python-multipart
+passlib[bcrypt]
+bcrypt==4.0.1
+python-jose[cryptography]
+python-dotenv
+aiofiles
+pydantic[email]
+pytest
+httpx
+pylint
