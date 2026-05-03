@@ -1,0 +1,17 @@
+[MASTER]
+ignore=venv,migrations,__pycache__
+
+[MESSAGES CONTROL]
+disable=
+    too-few-public-methods,
+    redefined-outer-name,
+    no-member,
+    no-self-argument,
+    no-name-in-module,
+    too-many-arguments,
+    too-many-positional-arguments,
+    too-many-locals,
+    unused-argument
+
+[FORMAT]
+max-line-length=120
